@@ -5,8 +5,8 @@ try:
 except:
     from ._global import *
 
-from PySide2.QtWidgets import QApplication, QWidget, QBoxLayout, QVBoxLayout
-from PySide2.QtWebEngineWidgets import QWebEngineView
+from PySide6.QtWidgets import QApplication, QWidget, QBoxLayout, QVBoxLayout
+from PySide6.QtWebEngineWidgets import QWebEngineView
 
 
 class GNSS:
