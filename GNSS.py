@@ -5,14 +5,14 @@ try:
 except:
     from ._global import *
 
-from PySide2.QtWidgets import QApplication, QWidget, QBoxLayout, QVBoxLayout
-from PySide2.QtWebEngineWidgets import QWebEngineView
+from PySide6.QtWidgets import QApplication, QWidget, QBoxLayout, QVBoxLayout
+from PySide6.QtWebEngineWidgets import QWebEngineView
 
 
 class GNSS:
     '''
-    get latitude longitude altitude and magnetometer from ground station
-    get latitude longitude and altutude from cansat
+    Get latitude longitude altitude and magnetometer from ground station.
+    Get latitude longitude and altutude from cansat.
     '''
 
     def __init__(self, lat_g, lng_g, lat_c, lng_c, alt_g, alt_c, x, y, z):
@@ -33,7 +33,8 @@ class GNSS:
 
     def arc(self):
         '''
-        return arc of the 2 given point'''
+        Return arc of the 2 given points.
+        '''
         a = (math.sin(self.dlat / 2) ** 2)
         a += (math.cos(self.lat_g) * math.cos(self.lat_c)
               * ((math.sin(self.dlon / 2)) ** 2))
@@ -44,7 +45,7 @@ class GNSS:
 
     def ground_distance(self):
         '''
-        return ground distance in meters
+        Return ground distance in meters.
         '''
         R0 = 6371000
         d = R0 * self.arc()
@@ -52,7 +53,7 @@ class GNSS:
 
     def line_of_sight(self):
         ''' 
-        return line of sight distance in meters
+        Return line of sight distance in meters.
         '''
         R0 = 6371000
         R = R0 + self.alt_g
@@ -68,7 +69,7 @@ class GNSS:
 
     def azimuth(self):
         '''
-        return azimuth in degree for locating cansat
+        Return azimuth in degrees for locating cansat.
         '''
         a = math.sin(self.dlon) * math.cos(self.lat_c)
         b = math.cos(self.lat_g) * math.sin(self.lat_c) - \
@@ -79,7 +80,7 @@ class GNSS:
 
     def heading(self):
         '''
-        return heading in degree for locating cansat
+        Return heading in degree for locating cansat.
         '''
         ht = self.azimuth() - self.z
         ht = ht % 360
@@ -87,7 +88,7 @@ class GNSS:
 
     def elevation(self):
         '''
-        return elevation in degree for locating cansat
+        Return elevation in degree for locating cansat.
         '''
         elev = math.atan2(self.alt, self.ground_distance())
         elev = math.degrees(elev)
@@ -102,7 +103,7 @@ class GNSS:
 
     def pythagorus(self):
         '''
-        find distance of the remaining pythagorus
+        Find distance of the remaining pythagorus.
         '''
         pyx = math.atan2((self.lng_c - self.lng_g), (self.lat_c-self.lat_g))
         return pyx * 180/math.pi
@@ -135,7 +136,8 @@ class FoliumMap:
 
     def plot(self, index, coord: tuple, alt):
         '''
-        to Plot each position in number of position, tuple, and altitude'''
+        Plot each position in number of position, tuple, and altitude.
+        '''
         self.coord.append(coord)
         folium.Marker(
             loaction=coord,

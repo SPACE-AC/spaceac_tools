@@ -9,7 +9,7 @@ class RTC:
         self.start_time = time.time()
 
     @staticmethod
-    def time_format(time):
+    def format_time(time):
         time_list = [str(time.hour).zfill(2), str(time.minute).zfill(
             2), str(time.second).zfill(2), str(time.microsecond)[0:3]]
         timen = ' '.join(
@@ -17,14 +17,14 @@ class RTC:
         return timen
 
     @staticmethod
-    def time_pc():
+    def time_local():
         time = datetime.now().time()
-        return RTC.time_format(time)
+        return RTC.format_time(time)
 
     @staticmethod
     def time_UTC():
         time = datetime.utcnow().time()
-        return RTC.time_format(time)
+        return RTC.format_time(time)
 
     def time_elapsed(self):
         delta = time.time() - self.start_time
@@ -40,11 +40,15 @@ class RTC:
         return timestp
 
     @staticmethod
-    def date():
+    def date_local():
         return datetime.now().date()
+
+    @staticmethod
+    def date_UTC():
+        return datetime.utcnow().date()
 
 
 if __name__ == '__main__':
-    print(RTC.date())
+    print(f'Local: {RTC.date_local()} {RTC.time_local()}')
+    print(f'UTC: {RTC.date_UTC()} {RTC.time_UTC()}')
     clock = RTC()
-

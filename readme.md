@@ -1,4 +1,5 @@
-# Space AC Tools
+# SPACE AC Tools
 
-use mainly with pyside6  pyqt5 still under development
- 
+Mainly using **PySide6** and **PyQt5**
+
+_Still under development_
